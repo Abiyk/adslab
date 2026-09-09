@@ -1,0 +1,13 @@
+ #include<stdio.h>
+  2 int main()
+  3 {
+  4     int a[5]= {10,20,30,40,50};
+  5     int sum = 0,i;
+  6     for(i=0;i<5;i++)
+  7     {
+  8         sum = sum+a[i];
+  9     }
+ 10     printf("sum = %d",sum)
+ 11         return 0;
+ 12 }
+~
