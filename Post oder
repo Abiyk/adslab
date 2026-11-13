@@ -1,0 +1,63 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *left, *right;
+};
+
+// Create a new node
+struct Node* newNode(int value) {
+    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+
+    node->data = value;
+    node->left = NULL;
+    node->right = NULL;
+
+    return node;
+}
+
+// Insert a node
+struct Node* insert(struct Node* root, int value) {
+    if (root == NULL)
+        return newNode(value);
+
+    if (value < root->data)
+        root->left = insert(root->left, value);
+
+    else if (value > root->data)
+        root->right = insert(root->right, value);
+
+    return root;
+}
+
+// Postorder Traversal
+void postorder(struct Node* root) {
+    if (root == NULL)
+        return;
+
+    postorder(root->left);
+    postorder(root->right);
+    printf("%d ", root->data);
+}
+
+int main() {
+    struct Node* root = NULL;
+    int n, value, i;
+
+    printf("Enter number of nodes: ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        printf("Enter value: ");
+        scanf("%d", &value);
+
+        root = insert(root, value);
+    }
+
+    printf("Postorder Traversal: ");
+    postorder(root);
+
+    return 0;
+}
