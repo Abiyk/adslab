@@ -1,0 +1,52 @@
+
+#include <stdio.h>
+
+int main() {
+    int n, graph[10][10], visited[10] = {0};
+    int queue[10], front = 0, rear = -1;
+    int start;
+
+    printf("Enter number of nodes: ");
+    scanf("%d", &n);
+
+    if (n < 1 || n > 10) {
+        printf("Invalid number of nodes!");
+        return 0;
+    }
+
+    printf("Enter adjacency matrix:\n");
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &graph[i][j]);
+        }
+    }
+
+    printf("Enter starting node: ");
+    scanf("%d", &start);
+
+    if (start < 0 || start >= n) {
+        printf("Invalid starting node!");
+        return 0;
+    }
+
+    visited[start] = 1;
+    queue[++rear] = start;
+
+    printf("BFS order: ");
+
+    while (front <= rear) {
+        int node = queue[front++];
+
+        printf("%d ", node);
+
+        for (int i = 0; i < n; i++) {
+            if (graph[node][i] == 1 && visited[i] == 0) {
+                visited[i] = 1;
+                queue[++rear] = i;
+            }
+        }
+    }
+
+    return 0;
+}
