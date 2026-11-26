@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,7 +6,7 @@ struct Node {
     struct Node *left, *right;
 };
 
-// Create a new node
+
 struct Node* newNode(int key) {
     struct Node* node = (struct Node*)malloc(sizeof(struct Node));
 
@@ -22,7 +21,7 @@ struct Node* newNode(int key) {
     return node;
 }
 
-// Insert a node
+
 struct Node* insert(struct Node* root, int key) {
     if (root == NULL)
         return newNode(key);
@@ -37,7 +36,7 @@ struct Node* insert(struct Node* root, int key) {
     return root;
 }
 
-// Find minimum node
+
 struct Node* minNode(struct Node* root) {
     while (root != NULL && root->left != NULL)
         root = root->left;
@@ -47,7 +46,7 @@ struct Node* minNode(struct Node* root) {
 
 
 
-// Search for a node
+
 struct Node* search(struct Node* root, int key) {
     if (root == NULL || root->data == key)
         return root;
@@ -60,7 +59,7 @@ struct Node* search(struct Node* root, int key) {
 
 
 
-// Delete a node
+
 struct Node* deleteNode(struct Node* root, int key) {
     if (root == NULL)
         return NULL;
@@ -72,21 +71,19 @@ struct Node* deleteNode(struct Node* root, int key) {
         root->right = deleteNode(root->right, key);
 
     else {
-        // Node has no left child
+       
         if (root->left == NULL) {
             struct Node* temp = root->right;
             free(root);
             return temp;
         }
 
-        // Node has no right child
         else if (root->right == NULL) {
             struct Node* temp = root->left;
             free(root);
             return temp;
         }
 
-        // Node has two children
         struct Node* succ = minNode(root->right);
 
         root->data = succ->data;
@@ -97,7 +94,6 @@ struct Node* deleteNode(struct Node* root, int key) {
     return root;
 }
 
-// Inorder traversal
 void inorder(struct Node* root) {
     if (root == NULL)
         return;
@@ -107,7 +103,6 @@ void inorder(struct Node* root) {
     inorder(root->right);
 }
 
-// Preorder traversal
 void preorder(struct Node* root) {
     if (root == NULL)
         return;
@@ -117,7 +112,7 @@ void preorder(struct Node* root) {
     preorder(root->right);
 }
 
-// Postorder traversal
+
 void postorder(struct Node* root) {
     if (root == NULL)
         return;
@@ -127,7 +122,7 @@ void postorder(struct Node* root) {
     printf("%d ", root->data);
 }
 
-// Main function
+
 int main() {
     struct Node* root = NULL;
     int choice, value;
