@@ -1,6 +1,4 @@
-
 #include <stdio.h>
-
 int main() {
     int n;
     int cost[10][10], parent[10];
